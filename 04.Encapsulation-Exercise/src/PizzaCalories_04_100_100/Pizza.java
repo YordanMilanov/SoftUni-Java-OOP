@@ -1,4 +1,4 @@
-package PizzaCalories_04_91_100;
+package PizzaCalories_04_100_100;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,10 @@ public class Pizza {
     }
 
     private void setName(String name) {
-        if (name.trim().length() >= 1 && name.trim().length() <= 15 || name.equals(" ")) {
-            this.name = name;
-        } else {
-        throw new IllegalArgumentException("Pizza name should be between 1 and 15 symbols.");
+        if (name.equals(" ") || name.isEmpty() || name.trim().length() > 15 || name == null || name.trim().length() < 1) {
+            throw new IllegalArgumentException("Pizza name should be between 1 and 15 symbols.");
         }
+        this.name = name;
     }
 
     public String getName() {
@@ -31,22 +30,29 @@ public class Pizza {
 
     private void setToppings(int count) {
         if (count <= 10 && count >= 0) {
-            this.toppings = new ArrayList<>(count);
+            this.toppings = new ArrayList<>();
         } else {
             throw new IllegalArgumentException("Number of toppings should be in range [0..10].");
         }
     }
 
     public void addTopping(Topping topping) {
+        if (this.toppings.size() > 10) {
+            throw new IllegalArgumentException("Number of toppings should be in range [0..10].");
+        }
         this.toppings.add(topping);
     }
 
     public double getOverallCalories() {
-        return this.dough.calculateCalories() + this.toppings.stream().mapToDouble(f -> f.calculateCalories()).sum();
+        double toppingsCaloriesSum = 0;
+        for (Topping topping : this.toppings) {
+            toppingsCaloriesSum += topping.calculateCalories();
+        }
+        return this.dough.calculateCalories() + toppingsCaloriesSum;
     }
 
     @Override
     public String toString() {
-        return String.format(this.name + " - " + this.getOverallCalories());
+        return String.format(this.name + " - " + "%.2f", this.getOverallCalories());
     }
 }
