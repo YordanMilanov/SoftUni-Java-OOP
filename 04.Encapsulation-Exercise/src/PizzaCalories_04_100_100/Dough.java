@@ -11,6 +11,7 @@ public class Dough {
         setWeight(weight);
     }
 
+
     private void setFlourType(String flourType) {
         if (flourType.equals("White") || flourType.equals("Wholegrain")) {
             this.flourType = flourType;
