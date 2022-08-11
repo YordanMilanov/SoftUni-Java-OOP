@@ -13,6 +13,6 @@ public class Lemonade extends Drink implements Product{
 
     @Override
     public double getAmountOfCalories() {
-        return (CALORIES_PER_100_GRAMS / 100) * (this.getMilliliters() * DENSITY);;
+        return (CALORIES_PER_100_GRAMS / 100) * (this.getMilliliters() * DENSITY);
     }
 }
