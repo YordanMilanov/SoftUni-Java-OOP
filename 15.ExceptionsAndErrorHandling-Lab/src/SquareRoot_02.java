@@ -7,7 +7,7 @@ public class SquareRoot_02 {
         double sqrt = -1;
 
         try {
-           sqrt = sqrt(Integer.parseInt(numberAsString));
+            sqrt = sqrt(Integer.parseInt(numberAsString));
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid");
         }
@@ -17,10 +17,12 @@ public class SquareRoot_02 {
         }
         System.out.println("Goodbye");
     }
+
     public static double sqrt(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Invalid");
         }
         return Math.sqrt(n);
     }
+
 }
